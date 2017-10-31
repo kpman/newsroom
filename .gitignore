@@ -1,0 +1,22 @@
+# dependency
+node_modules
+
+# files
+.DS_Store
+.env
+
+# logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# test
+coverage
+junit.xml
+jest-report
+
+# build
+lib
+dist

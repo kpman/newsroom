@@ -5,16 +5,22 @@ A CLI tool for getting latest weekly.
 ## Usage
 
 ```shell
-newsroom
+$ newsroom
 ```
 
 You will enter a interactive command line interface.
 Choose the weekly category and press enter.
 
+```shell
+$ newsroom [source] [number]
+```
+
+You can see the latest news or articles from source which supported by this CLI.
+
 ## Help
 
 ```shell
-newsroom --help
+$ newsroom --help
 ```
 
 ## Contributing

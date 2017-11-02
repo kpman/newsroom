@@ -1,5 +1,5 @@
 {
-  "name": "newsroom",
+  "name": "newsroom-cli",
   "version": "0.0.1",
   "description": "A CLI tool for getting latest weekly.",
   "main": "bin/cli.js",
@@ -16,7 +16,9 @@
   ],
   "author": "kpman",
   "license": "MIT",
-  "bugs": "https://github.com/kpman/newsroom/issues",
+  "bugs": {
+    "url": "https://github.com/kpman/newsroom/issues"
+  },
   "homepage": "https://github.com/kpman/newsroom/#readme",
   "dependencies": {
     "minimist": "^1.2.0"
@@ -39,5 +41,9 @@
     "*.js": [
       "eslint --fix"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kpman/newsroom.git"
   }
 }

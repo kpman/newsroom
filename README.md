@@ -9,7 +9,7 @@ $ newsroom
 ```
 
 You will enter a interactive command line interface.
-Choose the weekly category and press enter.
+Choose the source you want to receive and press enter.
 
 ```shell
 $ newsroom [source] [number]

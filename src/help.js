@@ -1,6 +1,32 @@
-const { print } = require('./log');
+const chalk = require('chalk');
+
+const sources = require('./sources');
 
 module.exports = () => {
-  print('This is a help. I will add more instruction in the future. ');
-  print('You can trace source code until I add it.');
+  console.log(`
+    $ newsroom
+
+      Enter an interactive mode to choose your source.
+
+    $ newsroom <source> <number>
+
+    ${chalk.dim('Source:')}
+
+      Choose one of the following source:
+      ${Object.keys(sources).join(', ')}
+
+    ${chalk.dim('Number:')}
+
+      The amount you want to see at a time. The default is 5.
+
+    ${chalk.dim('Examples:')}
+
+    ${chalk.dim('-')} Get wanqu news
+
+      ${chalk.cyan('$ newsroom wanqu')}
+
+    ${chalk.dim('-')} Get 7 latest TechCrunch news
+
+      ${chalk.cyan('$ newsroom techcrunch 7')}
+  `);
 };

@@ -87,7 +87,7 @@ const main = async argv => {
     process.exit(0);
   }
 
-  if (argv.h || argv.help) {
+  if (argv.h || argv.help || argv._[0] === 'help') {
     help();
     process.exit(0);
   }

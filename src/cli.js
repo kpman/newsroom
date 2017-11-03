@@ -8,12 +8,12 @@ const xml2js = require('xml2js');
 const open = require('open');
 const invariant = require('invariant');
 
+const pkg = require('../package.json');
+
 const { print, error } = require('./log');
 const sources = require('./sources');
 const help = require('./help');
 const removeQueryString = require('./utils/removeQueryString');
-
-const pkg = require('../package.json');
 
 const handleUnexpected = err => {
   error(`An unexpected error occurred!\n  ${err.stack} ${err.stack}`);

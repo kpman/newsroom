@@ -1,6 +1,6 @@
 # Newsroom
 
-A CLI tool for getting latest weekly.
+A CLI tool for getting different sources of news.
 
 ## Usage
 

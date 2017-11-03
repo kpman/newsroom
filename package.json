@@ -1,7 +1,7 @@
 {
   "name": "newsroom-cli",
   "version": "0.1.1",
-  "description": "A CLI tool for getting latest weekly.",
+  "description": "A CLI tool for getting different sources of news.",
   "main": "bin/cli.js",
   "bin": {
     "newsroom": "bin/cli.js",

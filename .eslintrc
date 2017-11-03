@@ -18,7 +18,8 @@
         "trailingComma": "es5",
         "singleQuote": true
       }
-    ]
+    ],
+    "prefer-destructuring": "off"
   },
   "plugins": [
     "babel",

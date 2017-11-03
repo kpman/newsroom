@@ -4,7 +4,8 @@
   "description": "A CLI tool for getting latest weekly.",
   "main": "bin/cli.js",
   "bin": {
-    "newsroom": "bin/cli.js"
+    "newsroom": "bin/cli.js",
+    "nr": "bin/cli.js"
   },
   "scripts": {
     "precommit": "lint-staged",
@@ -25,6 +26,7 @@
     "figures": "^2.0.0",
     "got": "^7.1.0",
     "inquirer": "^3.3.0",
+    "invariant": "^2.2.2",
     "lodash": "^4.17.4",
     "minimist": "^1.2.0",
     "open": "^0.0.5",

@@ -5,4 +5,16 @@ module.exports = {
   bnext: {
     rss: 'https://www.bnext.com.tw/rss',
   },
+  nodeweekly: {
+    rss: 'https://nodeweekly.com/rss/',
+  },
+  wanqu: {
+    rss: 'https://wanqu.co/feed',
+  },
+  techcrunch: {
+    rss: 'http://feeds.feedburner.com/TechCrunch/',
+  },
+  codetengu: {
+    rss: 'https://weekly.codetengu.com/issues.rss',
+  },
 };

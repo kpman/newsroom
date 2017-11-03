@@ -5,7 +5,7 @@ const got = require('got');
 const minimist = require('minimist');
 const inquirer = require('inquirer');
 const xml2js = require('xml2js');
-const Table = require('cli-table2');
+const open = require('open');
 
 const { print, error } = require('./log');
 const source = require('./source');
@@ -20,11 +20,17 @@ const sourceQuestion = {
   type: 'list',
   name: 'source',
   message: "Please choose which source's news you want to receive.",
-  choices: ['bnext', 'inside'],
-  filter: val => val.toLowerCase(),
+  choices: Object.keys(source),
+  filter: val => val,
 };
 
-const table = new Table();
+const getTitleQuestion = titles => ({
+  type: 'list',
+  name: 'title',
+  message: 'Please choose which title you want to open',
+  choices: titles,
+  filter: val => val,
+});
 
 const main = async argv => {
   if (argv.v || argv.version || argv._[0] === 'version') {
@@ -44,11 +50,23 @@ const main = async argv => {
     print(`Trying to fetch the ${answer.source}'s latest news...`);
     const rss = await got(src.rss);
     const result = await parseString(rss.body);
+    const items = {};
+
     result.rss.channel[0].item.forEach(item => {
-      table.push([`${item.title[0]}\n${removeQueryString(item.link[0])}`]);
+      const [title] = item.title;
+      const [link] = item.link;
+      items[title] = link;
     });
-    console.log(table.toString());
+
+    const titleAnswer = await inquirer.prompt([
+      getTitleQuestion(Object.keys(items)),
+    ]);
+
+    const url = items[titleAnswer.title];
+    open(removeQueryString(url));
   }
+
+  process.exit();
 };
 
 const handleUnexpected = err => {

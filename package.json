@@ -22,12 +22,12 @@
   "homepage": "https://github.com/kpman/newsroom/#readme",
   "dependencies": {
     "chalk": "^2.3.0",
-    "cli-table2": "^0.2.0",
     "figures": "^2.0.0",
     "got": "^7.1.0",
     "inquirer": "^3.3.0",
     "lodash": "^4.17.4",
     "minimist": "^1.2.0",
+    "open": "^0.0.5",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {

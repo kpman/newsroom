@@ -2,6 +2,12 @@
 
 A CLI tool for getting different sources of news.
 
+## Install
+
+```shell
+npm install -g newsroom-cli
+```
+
 ## Usage
 
 ```shell

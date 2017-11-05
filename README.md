@@ -1,6 +1,14 @@
-# Newsroom
 
-A CLI tool for getting different sources of news.
+<h1 align="center">
+  <br>
+	<img width=480 src="https://rawgit.com/kpman/newsroom/master/media/logo.png" alt="newsroom">
+	<br>
+  <br>
+</h1>
+
+> A CLI tool for getting different sources of news.
+
+[![npm version](https://img.shields.io/npm/v/newsroom-cli.svg?style=flat)](https://www.npmjs.com/package/newsroom-cli) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md#pull-requests)
 
 ## Install
 
@@ -22,6 +30,8 @@ $ newsroom [source] [number]
 ```
 
 You can see the latest news or articles from source which supported by this CLI.
+
+<img width=859 src="https://rawgit.com/kpman/newsroom/master/media/screenshot.png" alt="screenshot">
 
 ## Help
 
@@ -52,3 +62,11 @@ $ newsroom --help
 1. `git add -A && git commit -m "My message"` (replacing `My message` with a commit message, such as `Fixed header logo on Android`) to stage and commit your changes.
 2. `git push my-fork-name the-name-of-my-branch`
 3. Make a pull-request.
+
+## Maintainers
+
+- [Daniel Tseng](https://github.com/kpman)
+
+## License
+
+MIT

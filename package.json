@@ -7,10 +7,18 @@
     "newsroom": "bin/cli.js",
     "nr": "bin/cli.js"
   },
+  "files": [
+    "src",
+    "bin"
+  ],
   "scripts": {
     "precommit": "lint-staged",
+    "prepublishOnly": "npm run lint",
     "lint": "eslint src",
     "lint:fix": "npm run lint -- --fix"
+  },
+  "engines": {
+    "node": ">=7.6"
   },
   "keywords": [
     "newsletter"

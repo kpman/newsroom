@@ -17,4 +17,7 @@ module.exports = {
   codetengu: {
     rss: 'https://weekly.codetengu.com/issues.rss',
   },
+  michaelhsu: {
+    rss: 'https://medium.com/feed/@evenchange4',
+  },
 };

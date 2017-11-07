@@ -1,12 +1,11 @@
 const { promisify } = require('util');
 
 const get = require('lodash/get');
-const got = require('got');
 const minimist = require('minimist');
 const inquirer = require('inquirer');
-const xml2js = require('xml2js');
 const open = require('open');
 const invariant = require('invariant');
+const feed = promisify(require('feed-read-parser'));
 
 const pkg = require('../package.json');
 
@@ -36,8 +35,6 @@ const handleRejection = err => {
 process.on('unhandledRejection', handleRejection);
 process.on('uncaughtException', handleUnexpected);
 
-const parseString = promisify(xml2js.parseString);
-
 const sourceQuestion = {
   type: 'list',
   name: 'source',
@@ -58,13 +55,12 @@ const getTitleQuestion = (titles, pageSize = 5) => ({
 const readNews = async (source, pageSize = 5) => {
   print(`Trying to fetch the ${source}'s latest news...`);
   const src = await get(sources, source);
-  const rss = await got(src.rss);
-  const result = await parseString(rss.body);
+  const result = await feed(src.rss);
+
   const items = {};
 
-  result.rss.channel[0].item.slice(0, pageSize).forEach(item => {
-    const [title] = item.title;
-    const [link] = item.link;
+  result.slice(0, pageSize).forEach(item => {
+    const { title, link } = item;
     items[title] = link;
   });
 

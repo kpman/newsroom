@@ -37,7 +37,8 @@
     "invariant": "^2.2.2",
     "lodash": "^4.17.4",
     "minimist": "^1.2.0",
-    "open": "^0.0.5"
+    "open": "^0.0.5",
+    "update-notifier": "^2.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",

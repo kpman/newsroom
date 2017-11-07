@@ -20,4 +20,7 @@ module.exports = {
   gankio: {
     rss: 'https://gank.io/feed',
   },
+  echojs: {
+    rss: 'http://www.echojs.com/rss',
+  },
 };

@@ -17,4 +17,7 @@ module.exports = {
   codetengu: {
     rss: 'https://weekly.codetengu.com/issues.rss',
   },
+  gankio: {
+    rss: 'https://gank.io/feed',
+  },
 };

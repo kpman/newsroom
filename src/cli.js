@@ -9,10 +9,11 @@ const feed = promisify(require('feed-read-parser'));
 
 const pkg = require('../package.json');
 
-const { print, error } = require('./log');
-const sources = require('./sources');
-const help = require('./help');
+const { print, error } = require('./utils/log');
 const removeQueryString = require('./utils/removeQueryString');
+const checkForUpdates = require('./utils/update');
+const help = require('./help');
+const sources = require('./sources');
 
 const handleUnexpected = err => {
   error(`An unexpected error occurred!\n  ${err.stack} ${err.stack}`);
@@ -78,6 +79,8 @@ const checkSource = async source => {
 };
 
 const main = async argv => {
+  await checkForUpdates();
+
   if (argv.v || argv.version || argv._[0] === 'version') {
     console.log(pkg.version);
     process.exit(0);

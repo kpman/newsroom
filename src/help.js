@@ -7,11 +7,11 @@ module.exports = async () => {
   const sourcesTitle = sources.map(s => s.title);
 
   console.log(`
-    $ newsroom
+    ${chalk.cyan('$ newsroom')}
 
       Enter an interactive mode to choose your source.
 
-    $ newsroom <source> <number>
+    ${chalk.cyan('$ newsroom <source> <number>')}
 
     ${chalk.dim('Source:')}
 
@@ -22,6 +22,10 @@ module.exports = async () => {
 
       The amount you want to see at a time. The default is 5.
 
+    ${chalk.dim('Options:')}
+
+      -o    The path of your own OPML file. More about OPML format -> http://dev.opml.org/
+
     ${chalk.dim('Examples:')}
 
     ${chalk.dim('-')} Get hackernews
@@ -31,5 +35,9 @@ module.exports = async () => {
     ${chalk.dim('-')} Get 10 latest TechCrunch news
 
       ${chalk.cyan('$ newsroom techcrunch 10')}
+
+    ${chalk.dim('-')} Use my own OPML file
+
+      ${chalk.cyan('$ newsroom -o ./my-awesome-list.opml')}
   `);
 };

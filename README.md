@@ -24,6 +24,12 @@ The CLI will register `newsroom` and `nr` in your shell.
 $ newsroom
 ```
 
+or with your own awesome [OPML](http://dev.opml.org/) file
+
+```shell
+$ newsroom -o <your-awesome-list.opml>
+```
+
 You will enter a interactive command line interface.
 Choose the source you want to receive and press enter.
 
@@ -31,7 +37,7 @@ Choose the source you want to receive and press enter.
 $ newsroom [source] [number]
 ```
 
-You can see the latest news or articles from source which supported by this CLI.
+You can see the latest news from source.
 
 <img width=859 src="https://rawgit.com/kpman/newsroom/master/media/screenshot.png" alt="screenshot">
 
@@ -43,17 +49,6 @@ $ newsroom --help
 
 ## Contributing
 
-### Fork repo
-
-1. Fork this repo.
-2. Pull your forked repo on your local machine.
-
-### Create a branch
-
-1. `git checkout master` in your local repo.
-2. `git pull origin master` to ensure you have the latest main code
-3. `git checkout -b the-name-of-my-branch` to create a branch (remember to replace `the-name-of-my-branch` with a suitable name)
-
 ### Make the change
 
 - Modify the source code in `src` folder.
@@ -61,13 +56,16 @@ $ newsroom --help
 
 ### Push it
 
-1. `git add -A && git commit -m "My message"` (replacing `My message` with a commit message, such as `Fixed header logo on Android`) to stage and commit your changes.
-2. `git push my-fork-name the-name-of-my-branch`
-3. Make a pull-request.
+- Make a Pull-request
+
+## Related Repos
+
+- [haxor-news](https://github.com/donnemartin/haxor-news)
 
 ## Maintainers
 
 - [Daniel Tseng](https://github.com/kpman)
+- Waiting for you 🤘
 
 ## License
 

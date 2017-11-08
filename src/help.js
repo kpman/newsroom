@@ -1,32 +1,43 @@
 const chalk = require('chalk');
 
-const sources = require('./sources');
+const parseOpml = require('./opml');
 
-module.exports = () => {
+module.exports = async () => {
+  const sources = await parseOpml('./sources.opml');
+  const sourcesTitle = sources.map(s => s.title);
+
   console.log(`
-    $ newsroom
+    ${chalk.cyan('$ newsroom')}
 
       Enter an interactive mode to choose your source.
 
-    $ newsroom <source> <number>
+    ${chalk.cyan('$ newsroom <source> <number>')}
 
     ${chalk.dim('Source:')}
 
       Choose one of the following source:
-      ${Object.keys(sources).join(', ')}
+      ${sourcesTitle.join(', ')}
 
     ${chalk.dim('Number:')}
 
       The amount you want to see at a time. The default is 5.
 
+    ${chalk.dim('Options:')}
+
+      -o    The path of your own OPML file. More about OPML format -> http://dev.opml.org/
+
     ${chalk.dim('Examples:')}
 
-    ${chalk.dim('-')} Get wanqu news
+    ${chalk.dim('-')} Get hackernews
 
-      ${chalk.cyan('$ newsroom wanqu')}
+      ${chalk.cyan('$ newsroom hackernews')}
 
-    ${chalk.dim('-')} Get 7 latest TechCrunch news
+    ${chalk.dim('-')} Get 10 latest TechCrunch news
 
-      ${chalk.cyan('$ newsroom techcrunch 7')}
+      ${chalk.cyan('$ newsroom techcrunch 10')}
+
+    ${chalk.dim('-')} Use my own OPML file
+
+      ${chalk.cyan('$ newsroom -o ./my-awesome-list.opml')}
   `);
 };

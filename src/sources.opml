@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<opml version="1.0">
+  <head>
+    <title>Newsroom-cli default sources</title>
+  </head>
+  <body>
+    <outline type="rss" title="hackernews" xmlUrl="https://news.ycombinator.com/rss" />
+    <outline type="rss" title="techcrunch" xmlUrl="https://techcrunch.com/feed/" />
+    <outline type="rss" title="inside" xmlUrl="http://feeds.feedburner.com/inside-blog-taiwan" />
+    <outline type="rss" title="bnext" xmlUrl="https://www.bnext.com.tw/rss" />
+    <outline type="rss" title="wanqu" xmlUrl="https://wanqu.co/feed" />
+    <outline type="rss" title="nodeweekly" xmlUrl="https://nodeweekly.com/rss/" />
+    <outline type="rss" title="codetengu" xmlUrl="https://weekly.codetengu.com/issues.rss" />
+    <outline type="rss" title="gankio" xmlUrl="https://gank.io/feed" />
+  </body>
+</opml>

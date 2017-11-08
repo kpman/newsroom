@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-> A CLI tool for getting different sources of news.
+> 💻 A modern CLI to get your favorite news. 📰
 
 [![npm version](https://img.shields.io/npm/v/newsroom-cli.svg?style=flat)](https://www.npmjs.com/package/newsroom-cli) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md#pull-requests)
 
@@ -15,6 +15,8 @@
 ```shell
 npm install -g newsroom-cli
 ```
+
+The CLI will register `newsroom` and `nr` in your shell.
 
 ## Usage
 

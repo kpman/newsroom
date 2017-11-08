@@ -1,8 +1,11 @@
 const chalk = require('chalk');
 
-const sources = require('./sources');
+const parseOpml = require('./opml');
 
-module.exports = () => {
+module.exports = async () => {
+  const sources = await parseOpml('./sources.opml');
+  const sourcesTitle = sources.map(s => s.title);
+
   console.log(`
     $ newsroom
 
@@ -13,7 +16,7 @@ module.exports = () => {
     ${chalk.dim('Source:')}
 
       Choose one of the following source:
-      ${Object.keys(sources).join(', ')}
+      ${sourcesTitle.join(', ')}
 
     ${chalk.dim('Number:')}
 
@@ -21,12 +24,12 @@ module.exports = () => {
 
     ${chalk.dim('Examples:')}
 
-    ${chalk.dim('-')} Get wanqu news
+    ${chalk.dim('-')} Get hackernews
 
-      ${chalk.cyan('$ newsroom wanqu')}
+      ${chalk.cyan('$ newsroom hackernews')}
 
-    ${chalk.dim('-')} Get 7 latest TechCrunch news
+    ${chalk.dim('-')} Get 10 latest TechCrunch news
 
-      ${chalk.cyan('$ newsroom techcrunch 7')}
+      ${chalk.cyan('$ newsroom techcrunch 10')}
   `);
 };

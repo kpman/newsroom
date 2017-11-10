@@ -5,7 +5,6 @@ const feed = promisify(require('feed-read-parser'));
 const inquirer = require('inquirer');
 
 const { print } = require('./utils/log');
-const removeQueryString = require('./utils/removeQueryString');
 const { getTitleQuestion } = require('./questions');
 
 module.exports = async (source, pageSize = 5, sources) => {
@@ -25,5 +24,5 @@ module.exports = async (source, pageSize = 5, sources) => {
   ]);
 
   const url = items[titleAnswer.title];
-  open(removeQueryString(url));
+  open(url);
 };

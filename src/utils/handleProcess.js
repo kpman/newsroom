@@ -1,7 +1,7 @@
 const { error } = require('./log');
 
 const handleUnexpected = err => {
-  error(`An unexpected error occurred!\n  ${err.stack} ${err.stack}`);
+  error(`An unexpected error occurred!\n  ${err.stack}`);
   process.exit(1);
 };
 
@@ -15,7 +15,7 @@ const handleRejection = err => {
   } else {
     error('An unexpected empty rejection occurred');
   }
-  process.exit(1);
+  return process.exit(1);
 };
 
 module.exports = {

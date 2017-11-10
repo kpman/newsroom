@@ -3,6 +3,7 @@ module.exports = {
   extends: ['eslint:recommended', 'airbnb', 'prettier'],
   env: {
     node: true,
+    jest: true,
   },
   rules: {
     'arrow-parens': 'off',

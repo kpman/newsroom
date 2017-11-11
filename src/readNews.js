@@ -1,14 +1,20 @@
 const { promisify } = require('util');
 
 const open = require('open');
-const feed = promisify(require('feed-read-parser'));
+const invariant = require('invariant');
 const inquirer = require('inquirer');
 
 const { print } = require('./utils/log');
+const checkSource = require('./utils/checkSource');
 const { getTitleQuestion } = require('./questions');
 
-module.exports = async (source, pageSize = 5, sources) => {
+module.exports = async (source, sources, pageSize = 10) => {
+  invariant(source, 'The source is not defined');
+  checkSource(source, sources);
+
   print(`Trying to fetch the ${source}'s latest news...`);
+
+  const feed = promisify(require('feed-read-parser'));
   const src = sources.find(s => s.title === source);
   const result = await feed(src.feedUrl);
 
@@ -24,5 +30,6 @@ module.exports = async (source, pageSize = 5, sources) => {
   ]);
 
   const url = items[titleAnswer.title];
+
   open(url);
 };

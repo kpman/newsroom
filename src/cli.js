@@ -4,8 +4,6 @@ const inquirer = require('inquirer');
 const pkg = require('../package.json');
 
 const checkForUpdates = require('./utils/checkForUpdates');
-const checkSource = require('./utils/checkSource');
-const { handleRejection, handleUnexpected } = require('./utils/handleProcess');
 const { error } = require('./utils/log');
 const { getSourceQuestion } = require('./questions');
 const help = require('./help');
@@ -41,8 +39,7 @@ const main = async argv => {
   }
 
   try {
-    checkSource(source, sources);
-    await readNews(source, pageSize, sources);
+    await readNews(source, sources, pageSize);
   } catch (e) {
     error('Something goes wrong..');
     error(e.message);
@@ -52,7 +49,4 @@ const main = async argv => {
   process.exit(0);
 };
 
-process.on('unhandledRejection', handleRejection);
-process.on('uncaughtException', handleUnexpected);
-
-main(minimist(process.argv.slice(2))).catch(handleUnexpected);
+main(minimist(process.argv.slice(2)));

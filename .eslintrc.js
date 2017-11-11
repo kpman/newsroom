@@ -31,6 +31,7 @@ module.exports = {
         'newlines-between': 'always',
       },
     ],
+    'no-underscore-dangle': 'off',
   },
   plugins: ['babel', 'prettier'],
 };

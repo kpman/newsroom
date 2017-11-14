@@ -8,12 +8,17 @@ let inquirer;
 let checkForUpdates;
 let parseOpml;
 let readNews;
+let help;
+
+const pkg = require('../../package.json');
 
 const _processExit = process.exit;
 const _consoleLog = console.log;
 
 const setup = async () => {
+  console.log(1);
   await require('../cli');
+  console.log(5);
 };
 
 beforeEach(() => {
@@ -23,6 +28,7 @@ beforeEach(() => {
   parseOpml = require('../opml');
   parseOpml.mockReturnValue(Promise.resolve([{ title: 'hackernews' }]));
   readNews = require('../readNews');
+  help = require('../help');
   process.exit = jest.fn();
   console.log = jest.fn();
 });
@@ -46,48 +52,57 @@ describe('#cli', () => {
     it('exit after call --version', async () => {
       process.argv = ['node', 'bin/cli.js', '--version'];
       await setup();
+      expect(console.log).toBeCalledWith(pkg.version);
       expect(process.exit).toBeCalledWith(0);
     });
 
     it('exit after call -v', async () => {
       process.argv = ['node', 'bin/cli.js', '-v'];
       await setup();
+      expect(console.log).toBeCalledWith(pkg.version);
       expect(process.exit).toBeCalledWith(0);
     });
 
     it('exit after call version', async () => {
       process.argv = ['node', 'bin/cli.js', 'version'];
       await setup();
+      expect(console.log).toBeCalledWith(pkg.version);
       expect(process.exit).toBeCalledWith(0);
     });
   });
 
   describe('help', () => {
     it('exit after call --help', async () => {
+      help.mockReturnValueOnce('cool');
       process.argv = ['node', 'bin/cli.js', '--help'];
       await setup();
+      expect(help).toBeCalled();
       expect(process.exit).toBeCalledWith(0);
     });
 
     it('exit after call -h', async () => {
       process.argv = ['node', 'bin/cli.js', '-h'];
       await setup();
+      expect(help).toBeCalled();
       expect(process.exit).toBeCalledWith(0);
     });
 
     it('exit after call help', async () => {
       process.argv = ['node', 'bin/cli.js', 'help'];
       await setup();
+      expect(help).toBeCalled();
       expect(process.exit).toBeCalledWith(0);
     });
   });
 
-  describe('readNews', () => {
-    xit('should handle error', async () => {
-      readNews.mockReturnValue(Promise.reject(new Error('something wrong')));
-      // readNews.mockImplementation(() => Promise.reject(Error('GG')));
+  describe('#readNews', () => {
+    it('should handle error', async () => {
+      readNews.mockImplementation(() =>
+        Promise.reject(new Error('Fake fail in test'))
+      );
       process.argv = ['node', 'bin/cli.js'];
       await setup();
+      expect(readNews).toBeCalled();
       expect(process.exit).toBeCalledWith(1);
     });
   });

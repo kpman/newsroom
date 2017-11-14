@@ -39,11 +39,15 @@ const main = async argv => {
   }
 
   try {
+    console.log(2);
     await readNews(source, sources, pageSize);
+    console.log(2.5);
   } catch (e) {
+    console.log(3);
     error('Something goes wrong..');
     error(e.message);
     process.exit(1);
+    console.log(4);
   }
 
   process.exit(0);

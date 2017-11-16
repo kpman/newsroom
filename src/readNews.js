@@ -1,5 +1,4 @@
-const { promisify } = require('util');
-
+const thenify = require('thenify');
 const open = require('open');
 const invariant = require('invariant');
 const inquirer = require('inquirer');
@@ -14,7 +13,7 @@ module.exports = async (source, sources, pageSize = 10) => {
 
   print(`Trying to fetch the ${source}'s latest news...`);
 
-  const feed = promisify(require('feed-read-parser'));
+  const feed = thenify(require('feed-read-parser'));
   const src = sources.find(s => s.title === source);
   const result = await feed(src.feedUrl);
 

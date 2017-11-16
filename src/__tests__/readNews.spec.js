@@ -10,11 +10,11 @@ const setup = ({ title }) => {
 };
 
 let print;
-let promisify;
+let thenify;
 let inquirer;
 let open;
 
-jest.mock('util');
+jest.mock('thenify');
 jest.mock('inquirer');
 jest.mock('open');
 jest.mock('../utils/log');
@@ -27,8 +27,8 @@ beforeEach(() => {
       title: 'NBA-GO',
     })
   );
-  promisify = require('util').promisify;
-  promisify.mockReturnValue(() =>
+  thenify = require('thenify');
+  thenify.mockReturnValue(() =>
     Promise.resolve([
       {
         title: 'NBA-GO',

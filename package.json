@@ -42,11 +42,13 @@
     "minimist": "^1.2.0",
     "node-opml-parser": "^1.0.0",
     "open": "^0.0.5",
+    "thenify": "^3.3.0",
     "update-notifier": "^2.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.2",
     "babel-jest": "^21.2.0",
+    "babel-preset-env": "^1.6.1",
     "eslint": "^4.10.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.6.0",

@@ -1,7 +1,10 @@
+const searchSources = require('./searchSources');
+
 module.exports = sources => ({
-  type: 'list',
+  type: 'autocomplete',
   name: 'source',
-  message: "Please choose which source's news you want to receive.",
-  choices: sources,
-  filter: val => val,
+  suggestOnly: true,
+  message: 'Please choose a source:',
+  source: searchSources(sources),
+  validate: val => (val ? true : 'Type something!'),
 });

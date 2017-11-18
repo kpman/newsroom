@@ -5,21 +5,23 @@ it('be defined', () => {
 });
 
 describe('#getSourceQuestion', () => {
-  it('should return a list type question', () => {
+  it('should return a autocomplete type question', () => {
     const sources = [];
     const q = getSourceQuestion(sources);
-    expect(q.type).toBe('list');
+    expect(q.type).toBe('autocomplete');
   });
 
-  it('should return a object with choices passin', () => {
-    const sources = ['cool', 'awesome'];
-    const q = getSourceQuestion(sources);
-    expect(q.choices).toEqual(['cool', 'awesome']);
-  });
+  describe('#validate', () => {
+    it('should return a boolean when passing something', () => {
+      const sources = [];
+      const validate = getSourceQuestion(sources).validate;
+      expect(validate('input...')).toBeTruthy();
+    });
 
-  it('filter function will return parameter', () => {
-    const sources = ['cool', 'awesome'];
-    const q = getSourceQuestion(sources);
-    expect(q.filter('yayaya')).toEqual('yayaya');
+    it('should return `Type something!` when passing undefined', () => {
+      const sources = [];
+      const validate = getSourceQuestion(sources).validate;
+      expect(validate()).toEqual('Type something!');
+    });
   });
 });

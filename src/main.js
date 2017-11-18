@@ -34,6 +34,10 @@ const main = async argv => {
   } else {
     const sourcesTitle = sources.map(s => s.title);
     const askSource = getSourceQuestion(sourcesTitle);
+    inquirer.registerPrompt(
+      'autocomplete',
+      require('inquirer-autocomplete-prompt')
+    );
     const answer = await inquirer.prompt([askSource]);
     source = answer.source;
   }

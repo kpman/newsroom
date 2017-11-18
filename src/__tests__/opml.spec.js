@@ -7,6 +7,8 @@ let fs;
 beforeEach(() => {
   fs = require('fs');
   fs.readFileSync = jest.fn();
+  fs.readFileSync.mockReturnValue({ toString: () => '<xml></xml>' });
+  fs.existsSync = jest.fn();
 });
 
 it('should be defined', () => {
@@ -14,9 +16,23 @@ it('should be defined', () => {
 });
 
 describe('#opml', () => {
+  it('should use absolute file path when file exists', async () => {
+    fs.existsSync.mockReturnValue(true);
+    const opmlpath = '/User/awesome.opml';
+    await opml(opmlpath);
+    expect(fs.readFileSync).toBeCalledWith('/User/awesome.opml');
+  });
+
+  it('should use relative file path', async () => {
+    fs.existsSync.mockReturnValue(false);
+    process.cwd = jest.fn(() => '/testonly');
+    const opmlpath = './awesome.opml';
+    await opml(opmlpath);
+    expect(fs.readFileSync).toBeCalledWith('/testonly/awesome.opml');
+  });
+
   it('should parse correctly', async () => {
     const opmlpath = 'awesome.opml';
-    fs.readFileSync.mockReturnValue({ toString: () => '<xml></xml>' });
     const result = await opml(opmlpath);
     expect(result).toMatchSnapshot();
   });

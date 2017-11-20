@@ -1,3 +1,5 @@
+const path = require('path');
+
 const opml = require('../opml');
 
 jest.mock('fs');
@@ -29,6 +31,15 @@ describe('#opml', () => {
     const opmlpath = './awesome.opml';
     await opml(opmlpath);
     expect(fs.readFileSync).toBeCalledWith('/testonly/awesome.opml');
+  });
+
+  it('should use default file path', async () => {
+    fs.existsSync.mockReturnValue(false);
+    const opmlpath = undefined;
+    await opml(opmlpath);
+    expect(fs.readFileSync).toBeCalledWith(
+      path.join(__dirname, '..', './sources.opml')
+    );
   });
 
   it('should parse correctly', async () => {

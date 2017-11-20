@@ -24,7 +24,7 @@ The CLI will register `newsroom` and `nr` in your shell.
 $ newsroom
 ```
 
-![](https://user-images.githubusercontent.com/2382594/32976796-e85c1d84-cc59-11e7-9ae4-6764232921ef.gif)
+![](https://user-images.githubusercontent.com/2382594/33028798-c8a6fb7c-ce51-11e7-98ae-671c1136bbcf.gif)
 
 or with your own awesome [OPML](http://dev.opml.org/) file
 
@@ -35,7 +35,7 @@ $ newsroom -o <your-awesome-list.opml>
 ![](https://user-images.githubusercontent.com/2382594/32977243-606733d6-cc64-11e7-8f2e-8df4058bbdc8.gif)
 
 You will enter a interactive command line interface.
-Type the source you want to receive and press **TAB**.
+Type the source you want to receive and press enter.
 
 
 

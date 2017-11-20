@@ -6,11 +6,18 @@ const parseOpml = thenify(require('node-opml-parser'));
 
 module.exports = async opmlPath => {
   let filePath;
-  if (fs.existsSync(opmlPath)) {
-    filePath = opmlPath;
+
+  if (opmlPath) {
+    if (fs.existsSync(opmlPath)) {
+      filePath = opmlPath;
+    } else {
+      filePath = path.join(process.cwd(), opmlPath);
+    }
   } else {
-    filePath = path.join(process.cwd(), opmlPath);
+    // default sources
+    filePath = path.join(__dirname, './sources.opml');
   }
+
   const opmlFile = fs.readFileSync(filePath);
   const result = await parseOpml(opmlFile.toString());
   return result;

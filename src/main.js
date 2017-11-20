@@ -23,8 +23,8 @@ const main = async argv => {
     process.exit(0);
   }
 
-  const opmlPath = argv.o ? argv.o : './sources.opml';
-  const sources = await parseOpml(opmlPath);
+  const customOpmlPath = argv.o;
+  const sources = await parseOpml(customOpmlPath);
 
   let source;
   let pageSize;

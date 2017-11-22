@@ -1,6 +1,11 @@
 language: node_js
 node_js:
   - '9'
-  - '8'
-  - '7'
-  - '6'
+  - '8' 
+
+install:
+  - npm install
+  - npm install --only=dev
+
+script:
+  - npm run test

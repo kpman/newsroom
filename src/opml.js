@@ -6,7 +6,6 @@ const parseOpml = thenify(require('node-opml-parser'));
 
 module.exports = async opmlPath => {
   let filePath;
-
   if (opmlPath) {
     if (fs.existsSync(opmlPath)) {
       filePath = opmlPath;

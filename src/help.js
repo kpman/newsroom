@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const parseOpml = require('./opml');
 
 module.exports = async () => {
-  const sources = await parseOpml('./sources.opml');
+  const sources = await parseOpml();
   const sourcesTitle = sources.map(s => s.title);
 
   console.log(`

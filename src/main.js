@@ -18,7 +18,6 @@ const main = async argv => {
   }
 
   if (argv.h || argv.help || argv._[0] === 'help') {
-    console.log(help);
     await help();
     process.exit(0);
   }

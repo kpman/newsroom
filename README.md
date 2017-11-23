@@ -8,7 +8,7 @@
 
 > 💻 A modern CLI to get your favorite news. 📰
 
-[![npm version](https://img.shields.io/npm/v/newsroom-cli.svg?style=flat)](https://www.npmjs.com/package/newsroom-cli) [![Build Status](https://img.shields.io/travis/kpman/newsroom.svg?branch=master)](https://travis-ci.org/kpman/newsroom) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md#pull-requests)
+[![npm version](https://img.shields.io/npm/v/newsroom-cli.svg?style=flat)](https://www.npmjs.com/package/newsroom-cli) [![Build Status](https://img.shields.io/travis/kpman/newsroom.svg?branch=master)](https://travis-ci.org/kpman/newsroom) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#contributing)
 
 ## Install
 
@@ -58,11 +58,11 @@ $ newsroom --help
 ### Make the change
 
 - Modify the source code in `src` folder.
-- Run `npm run lint` from the project root. Make sure it pass the check.
+- Run `npm run test` from the project root. Make sure it pass the check.
 
 ### Push it
 
-- Make a Pull-request
+- Make a Pull-request directly on `master` branch
 
 ## Related Repos
 

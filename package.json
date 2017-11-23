@@ -1,6 +1,6 @@
 {
   "name": "newsroom-cli",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A modern CLI to get your favorite news.",
   "main": "bin/cli.js",
   "bin": {

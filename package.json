@@ -24,7 +24,7 @@
     "testonly:watch": "jest --watch"
   },
   "engines": {
-    "node": ">=7.6"
+    "node": ">=4"
   },
   "keywords": [
     "newsletter"

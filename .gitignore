@@ -1,5 +1,6 @@
 # dependency
 node_modules
+package-lock.json
 
 # files
 .DS_Store

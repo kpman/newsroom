@@ -21,7 +21,8 @@
     "test": "npm run lint && jest",
     "testonly": "jest",
     "testonly:cov": "jest --coverage --runInBand --forceExit",
-    "testonly:watch": "jest --watch"
+    "testonly:watch": "jest --watch",
+    "version": "rimraf package-lock.json && git add -A"
   },
   "engines": {
     "node": ">=4"

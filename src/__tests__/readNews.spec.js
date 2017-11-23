@@ -1,5 +1,3 @@
-const readNews = require('../readNews');
-
 const setup = ({ title }) => {
   const sources = [
     {
@@ -13,6 +11,7 @@ let print;
 let thenify;
 let inquirer;
 let open;
+let readNews;
 
 jest.mock('thenify');
 jest.mock('inquirer');
@@ -41,6 +40,7 @@ beforeEach(() => {
     ])
   );
   open = require('open');
+  readNews = require('../readNews');
 });
 
 it('should be defined', () => {

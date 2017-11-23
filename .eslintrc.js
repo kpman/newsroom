@@ -1,6 +1,6 @@
 module.exports = {
   parser: 'babel-eslint',
-  extends: ['eslint:recommended', 'airbnb', 'prettier'],
+  extends: ['eslint:recommended', 'airbnb-base', 'prettier'],
   env: {
     node: true,
     jest: true,
@@ -33,5 +33,5 @@ module.exports = {
     ],
     'no-underscore-dangle': 'off',
   },
-  plugins: ['babel', 'prettier'],
+  plugins: ['prettier'],
 };

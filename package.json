@@ -8,12 +8,14 @@
     "nr": "bin/cli.js"
   },
   "files": [
-    "src",
-    "bin"
+    "bin",
+    "lib"
   ],
   "scripts": {
+    "build": "npm run clean && babel src -d lib --copy-files --ignore '**/*.spec.js'",
+    "clean": "rimraf lib",
     "precommit": "lint-staged",
-    "prepublishOnly": "npm run lint",
+    "prepublishOnly": "npm run lint && npm run build",
     "lint": "eslint src",
     "lint:fix": "npm run lint -- --fix",
     "test": "npm run lint && jest",
@@ -34,6 +36,7 @@
   },
   "homepage": "https://github.com/kpman/newsroom/#readme",
   "dependencies": {
+    "babel-runtime": "^6.26.0",
     "chalk": "^2.3.0",
     "feed-read-parser": "^0.0.6",
     "figures": "^2.0.0",
@@ -50,6 +53,9 @@
   "devDependencies": {
     "babel-eslint": "^8.0.2",
     "babel-jest": "^21.2.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "eslint": "^4.10.0",
     "eslint-config-airbnb": "^16.1.0",
@@ -62,7 +68,8 @@
     "husky": "^0.14.3",
     "jest": "^21.2.1",
     "lint-staged": "^4.3.0",
-    "prettier": "^1.7.4"
+    "prettier": "^1.7.4",
+    "rimraf": "^2.6.2"
   },
   "lint-staged": {
     "*.js": [

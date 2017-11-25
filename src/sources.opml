@@ -13,5 +13,9 @@
     <outline type="rss" title="nodeweekly" xmlUrl="https://nodeweekly.com/rss/" />
     <outline type="rss" title="codetengu" xmlUrl="https://weekly.codetengu.com/issues.rss" />
     <outline type="rss" title="gankio" xmlUrl="https://gank.io/feed" />
+    <outline type="rss" title="blockchainweekly" xmlUrl="https://blockchainweekly.net/issues.rss" />
+    <outline type="rss" title="blockcast" xmlUrl="http://blockcast.it/feed/" />
+    <outline type="rss" title="icopro" xmlUrl="http://icopro.co/feed/" />
+    <outline type="rss" title="blocktempo" xmlUrl="https://www.blocktempo.com/feed/" />
   </body>
 </opml>

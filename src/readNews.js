@@ -2,6 +2,7 @@ const thenify = require('thenify');
 const open = require('open');
 const invariant = require('invariant');
 const inquirer = require('inquirer');
+const feed = thenify(require('feed-read-parser'));
 
 const { print } = require('./utils/log');
 const checkSource = require('./utils/checkSource');
@@ -13,22 +14,24 @@ module.exports = async (source, sources, pageSize = 10) => {
 
   print(`Trying to fetch the ${source}'s latest news...`);
 
-  const feed = thenify(require('feed-read-parser'));
-  const src = sources.find(s => s.title === source);
-  const result = await feed(src.feedUrl);
+  const targetSource = sources.find(s => s.title === source);
 
-  const items = {};
+  invariant(targetSource, 'The source is not found');
 
-  result.slice(0, pageSize).forEach(item => {
-    const { title, link } = item;
-    items[title] = link;
+  const articles = await feed(targetSource.feedUrl);
+
+  const articleMap = {};
+
+  articles.slice(0, pageSize).forEach(article => {
+    const { title, link } = article;
+    articleMap[title] = link;
   });
 
   const titleAnswer = await inquirer.prompt([
-    getTitleQuestion(Object.keys(items), pageSize),
+    getTitleQuestion(Object.keys(articleMap), pageSize),
   ]);
 
-  const url = items[titleAnswer.title];
+  const url = articleMap[titleAnswer.title];
 
   open(url);
 };

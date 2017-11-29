@@ -1,2 +1,4 @@
-module.exports.getSourceQuestion = require('./getSourceQuestion');
-module.exports.getTitleQuestion = require('./getTitleQuestion');
+module.exports = {
+  getSourceQuestion: require('./getSourceQuestion'),
+  getTitleQuestion: require('./getTitleQuestion'),
+};

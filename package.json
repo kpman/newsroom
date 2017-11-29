@@ -39,6 +39,7 @@
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "chalk": "^2.3.0",
+    "cheerio": "^1.0.0-rc.2",
     "feed-read-parser": "^0.0.6",
     "figures": "^2.0.0",
     "fuzzy": "^0.1.3",

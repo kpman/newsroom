@@ -3,6 +3,7 @@ const open = require('open');
 const invariant = require('invariant');
 const inquirer = require('inquirer');
 const feed = thenify(require('feed-read-parser'));
+const cheerio = require('cheerio');
 
 const { print } = require('./utils/log');
 const checkSource = require('./utils/checkSource');
@@ -18,18 +19,38 @@ module.exports = async (source, sources, pageSize = 10) => {
 
   invariant(targetSource, 'The source is not found');
 
+  const isCuratedCo = /issues\.rss/.test(targetSource.feedUrl); // check the feed is made by https://curated.co
+
   const articles = await feed(targetSource.feedUrl);
 
-  const articleMap = {};
+  let articleMap = {};
 
   articles.slice(0, pageSize).forEach(article => {
     const { title, link } = article;
     articleMap[title] = link;
   });
 
-  const titleAnswer = await inquirer.prompt([
+  let titleAnswer = await inquirer.prompt([
     getTitleQuestion(Object.keys(articleMap), pageSize),
   ]);
+
+  if (isCuratedCo) {
+    articleMap = {};
+    articles.forEach(r => {
+      if (r.title === titleAnswer.title) {
+        const $ = cheerio.load(r.content);
+        // eslint-disable-next-line func-names
+        $('h4 a').each(function() {
+          const title = $(this).text();
+          const url = $(this).attr('href');
+          articleMap[title] = url;
+        });
+      }
+    });
+    titleAnswer = await inquirer.prompt([
+      getTitleQuestion(Object.keys(articleMap), pageSize),
+    ]);
+  }
 
   const url = articleMap[titleAnswer.title];
 

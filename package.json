@@ -1,7 +1,17 @@
 {
   "name": "newsroom-cli",
-  "version": "0.1.7",
   "description": "A modern CLI to get your favorite news.",
+  "author": "kpman",
+  "license": "MIT",
+  "homepage": "https://github.com/kpman/newsroom/#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kpman/newsroom.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kpman/newsroom/issues"
+  },
+  "version": "0.1.7",
   "main": "bin/cli.js",
   "bin": {
     "newsroom": "bin/cli.js",
@@ -15,27 +25,15 @@
     "build": "npm run clean && babel src -d lib --copy-files --ignore '**/*.spec.js'",
     "clean": "rimraf lib",
     "precommit": "lint-staged",
-    "prepublishOnly": "npm run lint && npm run build",
     "lint": "eslint src",
     "lint:fix": "npm run lint -- --fix",
+    "prepublishOnly": "npm run lint && npm run build",
     "test": "npm run lint && jest",
     "testonly": "jest",
     "testonly:cov": "jest --coverage --runInBand --forceExit",
     "testonly:watch": "jest --watch",
     "version": "rimraf package-lock.json && git add -A"
   },
-  "engines": {
-    "node": ">=4"
-  },
-  "keywords": [
-    "newsletter"
-  ],
-  "author": "kpman",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/kpman/newsroom/issues"
-  },
-  "homepage": "https://github.com/kpman/newsroom/#readme",
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "chalk": "^2.3.0",
@@ -68,13 +66,14 @@
     "jest": "^21.2.1",
     "lint-staged": "^4.3.0",
     "prettier": "^1.7.4",
+    "prettier-package-json": "^1.4.0",
     "rimraf": "^2.6.2"
   },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ]
+  "keywords": [
+    "newsletter"
+  ],
+  "engines": {
+    "node": ">=4"
   },
   "jest": {
     "testEnvironment": "node",
@@ -83,8 +82,14 @@
     ],
     "coverageDirectory": "./coverage/"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kpman/newsroom.git"
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "package.json": [
+      "prettier-package-json --write",
+      "git add"
+    ]
   }
 }

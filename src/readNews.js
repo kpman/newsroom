@@ -23,11 +23,27 @@ module.exports = async (source, sources, pageSize = 10) => {
 
   const articles = await feed(targetSource.feedUrl);
 
+  const maxCommonPrefixLength = 80;
+  const commonPrefixIndex = articles
+    .slice(0, pageSize)
+    .reduce((prefixIndex, article, idx) => {
+      if (idx !== 0) {
+        const currentStr = article.title;
+        const prevStr = articles[idx - 1].title;
+        for (let j = 0; j < prefixIndex; j += 1) {
+          if (prevStr[j] !== currentStr[j]) {
+            return j;
+          }
+        }
+      }
+      return prefixIndex;
+    }, maxCommonPrefixLength);
+
   let articleMap = {};
 
   articles.slice(0, pageSize).forEach(article => {
     const { title, link } = article;
-    articleMap[title] = link;
+    articleMap[title.slice(commonPrefixIndex)] = link;
   });
 
   let titleAnswer = await inquirer.prompt([
@@ -36,9 +52,10 @@ module.exports = async (source, sources, pageSize = 10) => {
 
   if (isCuratedCo) {
     articleMap = {};
-    articles.forEach(r => {
-      if (r.title === titleAnswer.title) {
-        const $ = cheerio.load(r.content);
+    const regex = new RegExp(titleAnswer.title);
+    articles.forEach(article => {
+      if (regex.test(article.title)) {
+        const $ = cheerio.load(article.content);
         // eslint-disable-next-line func-names
         $('h4 a').each(function() {
           const title = $(this).text();

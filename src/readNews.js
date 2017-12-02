@@ -4,8 +4,8 @@ const invariant = require('invariant');
 const inquirer = require('inquirer');
 const feed = thenify(require('feed-read-parser'));
 const cheerio = require('cheerio');
+const ora = require('ora');
 
-const { print } = require('./utils/log');
 const checkSource = require('./utils/checkSource');
 const { getTitleQuestion } = require('./questions');
 
@@ -13,7 +13,7 @@ module.exports = async (source, sources, pageSize = 10) => {
   invariant(source, 'The source is not defined');
   checkSource(source, sources);
 
-  print(`Trying to fetch the ${source}'s latest news...`);
+  const spinner = ora(`Trying to fetch the ${source}'s latest news...`).start();
 
   const targetSource = sources.find(s => s.title === source);
 
@@ -45,6 +45,8 @@ module.exports = async (source, sources, pageSize = 10) => {
     const { title, link } = article;
     articleMap[title.slice(commonPrefixIndex)] = link;
   });
+
+  spinner.succeed();
 
   let titleAnswer = await inquirer.prompt([
     getTitleQuestion(Object.keys(articleMap), pageSize),

@@ -7,19 +7,20 @@ const setup = ({ title }) => {
   return { sources };
 };
 
-let print;
 let thenify;
 let inquirer;
 let open;
+let ora;
 let readNews;
+let succeed;
 
 jest.mock('thenify');
 jest.mock('inquirer');
 jest.mock('open');
+jest.mock('ora');
 jest.mock('../utils/log');
 
 beforeEach(() => {
-  print = require('../utils/log').print;
   inquirer = require('inquirer');
   inquirer.prompt.mockReturnValue(
     Promise.resolve({
@@ -39,6 +40,13 @@ beforeEach(() => {
       },
     ])
   );
+  succeed = jest.fn();
+  ora = require('ora');
+  ora.mockReturnValue({
+    start: jest.fn(() => ({
+      succeed,
+    })),
+  });
   open = require('open');
   readNews = require('../readNews');
 });
@@ -57,12 +65,18 @@ describe('#readNews', () => {
     }
   });
 
-  it('should call print from log utils', async () => {
+  it('should call ora to add spinner', async () => {
     const { sources } = setup({ title: 'hackernews' });
     await readNews('hackernews', sources);
-    expect(print).toBeCalledWith(
+    expect(ora).toBeCalledWith(
       `Trying to fetch the hackernews's latest news...`
     );
+  });
+
+  it('should call spinner succeed', async () => {
+    const { sources } = setup({ title: 'hackernews' });
+    await readNews('hackernews', sources);
+    expect(succeed).toBeCalled();
   });
 
   it('should call inquirer.prompt', async () => {

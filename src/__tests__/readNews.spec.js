@@ -24,7 +24,7 @@ beforeEach(() => {
   inquirer = require('inquirer');
   inquirer.prompt.mockReturnValue(
     Promise.resolve({
-      title: 'NBA-GO',
+      title: ['NBA-GO'],
     })
   );
   thenify = require('thenify');
@@ -87,7 +87,7 @@ describe('#readNews', () => {
       'newsroom',
     ]);
     expect(inquirer.prompt.mock.calls[0][0][0].pageSize).toBe(10);
-    expect(inquirer.prompt.mock.calls[0][0][0].type).toBe('list');
+    expect(inquirer.prompt.mock.calls[0][0][0].type).toBe('checkbox');
   });
 
   it('should call open', async () => {

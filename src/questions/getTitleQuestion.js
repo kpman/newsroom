@@ -1,5 +1,5 @@
 module.exports = (titles, pageSize = 5) => ({
-  type: 'list',
+  type: 'checkbox',
   name: 'title',
   message: 'Please choose which title you want to open',
   choices: titles,

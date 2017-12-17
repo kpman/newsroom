@@ -71,7 +71,7 @@ module.exports = async (source, sources, pageSize = 10) => {
     ]);
   }
 
-  const url = articleMap[titleAnswer.title];
-
-  open(url);
+  titleAnswer.title.forEach(t => {
+    open(articleMap[t]);
+  });
 };

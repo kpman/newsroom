@@ -8,7 +8,7 @@ describe('#getTitleQuestion', () => {
   it('should return a list type question', () => {
     const titles = [];
     const q = getTitleQuestion(titles);
-    expect(q.type).toBe('list');
+    expect(q.type).toBe('checkbox');
   });
 
   it('should return a question object with name `title`', () => {

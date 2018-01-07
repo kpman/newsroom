@@ -101,15 +101,6 @@ describe('#main', () => {
   });
 
   describe('#readNews', () => {
-    it('should handle error', async () => {
-      readNews.mockImplementation(() =>
-        Promise.reject(new Error('Fake fail in test'))
-      );
-      process.argv = ['node', 'bin/cli.js'];
-      await main(minimist(process.argv.slice(2)));
-      expect(process.exit).toBeCalledWith(1);
-    });
-
     it('should parse source', async () => {
       readNews.mockImplementation(() => Promise.resolve());
       process.argv = ['node', 'bin/cli.js', 'hackernews'];
@@ -119,7 +110,6 @@ describe('#main', () => {
         [{ title: 'hackernews' }],
         undefined
       );
-      expect(process.exit).toBeCalledWith(0);
     });
   });
 });

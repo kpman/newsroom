@@ -74,4 +74,6 @@ module.exports = async (source, sources, pageSize = 10) => {
   titleAnswer.title.forEach(t => {
     open(articleMap[t]);
   });
+
+  return true;
 };

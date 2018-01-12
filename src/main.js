@@ -3,7 +3,6 @@ const inquirer = require('inquirer');
 const pkg = require('../package.json');
 
 const checkForUpdates = require('./utils/checkForUpdates');
-const { error } = require('./utils/log');
 const { getSourceQuestion } = require('./questions');
 const help = require('./help');
 const parseOpml = require('./opml');
@@ -27,29 +26,25 @@ const main = async argv => {
 
   let source;
   let pageSize;
+  let loop = true;
 
-  if (argv._[0]) {
-    [source, pageSize] = argv._;
-  } else {
-    const sourcesTitle = sources.map(s => s.title);
-    const askSource = getSourceQuestion(sourcesTitle);
-    inquirer.registerPrompt(
-      'autocomplete',
-      require('inquirer-autocomplete-prompt')
-    );
-    const answer = await inquirer.prompt([askSource]);
-    source = answer.source;
+  while (loop) {
+    if (argv._[0]) {
+      [source, pageSize] = argv._;
+    } else {
+      const sourcesTitle = sources.map(s => s.title);
+      const askSource = getSourceQuestion(sourcesTitle);
+      inquirer.registerPrompt(
+        'autocomplete',
+        require('inquirer-autocomplete-prompt')
+      );
+      // eslint-disable-next-line no-await-in-loop
+      const answer = await inquirer.prompt([askSource]);
+      source = answer.source;
+    }
+    // eslint-disable-next-line no-await-in-loop
+    loop = await readNews(source, sources, pageSize);
   }
-
-  try {
-    await readNews(source, sources, pageSize);
-  } catch (e) {
-    error('Something goes wrong..');
-    error(e.message);
-    process.exit(1);
-  }
-
-  process.exit(0);
 };
 
 module.exports = main;

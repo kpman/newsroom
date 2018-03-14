@@ -9,6 +9,7 @@
     <outline type="rss" title="techcrunch" xmlUrl="https://techcrunch.com/feed/" />
     <outline type="rss" title="inside" xmlUrl="http://feeds.feedburner.com/inside-blog-taiwan" />
     <outline type="rss" title="bnext" xmlUrl="https://www.bnext.com.tw/rss" />
+    <outline type="rss" title="ithome" xmlUrl="https://www.ithome.com.tw/rss" />
     <outline type="rss" title="wanqu" xmlUrl="https://wanqu.co/feed" />
     <outline type="rss" title="nodeweekly" xmlUrl="https://nodeweekly.com/rss/" />
     <outline type="rss" title="codetengu" xmlUrl="https://weekly.codetengu.com/issues.rss" />

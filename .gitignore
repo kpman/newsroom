@@ -21,3 +21,4 @@ jest-report
 # build
 lib
 dist
+packed

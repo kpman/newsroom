@@ -23,10 +23,11 @@
   ],
   "scripts": {
     "build": "npm run clean && babel src -d lib --copy-files --ignore '**/*.spec.js'",
-    "clean": "rimraf lib",
+    "clean": "rimraf lib packed",
     "precommit": "lint-staged",
     "lint": "eslint src",
     "lint:fix": "npm run lint -- --fix",
+    "pkg": "npm run build && pkg . --out-path packed",
     "prepublishOnly": "npm run lint && npm run build",
     "test": "npm run lint && jest",
     "testonly": "jest",
@@ -67,6 +68,7 @@
     "husky": "^0.14.3",
     "jest": "^21.2.1",
     "lint-staged": "^6.0.0",
+    "pkg": "^4.3.1",
     "prettier": "^1.9.2",
     "prettier-package-json": "^1.4.0",
     "rimraf": "^2.6.2"
@@ -92,6 +94,15 @@
     "package.json": [
       "prettier-package-json --write",
       "git add"
+    ]
+  },
+  "pkg": {
+    "scripts": "lib/**/*.js",
+    "assets": "lib/sources.opml",
+    "targets": [
+      "node6-macos",
+      "node6-linux",
+      "node6-win"
     ]
   }
 }

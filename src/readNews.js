@@ -1,47 +1,45 @@
 const thenify = require('thenify');
 const open = require('open');
-const invariant = require('invariant');
 const inquirer = require('inquirer');
 const feed = thenify(require('feed-read-parser'));
 const cheerio = require('cheerio');
 const ora = require('ora');
 
-const checkSource = require('./utils/checkSource');
 const { getTitleQuestion } = require('./questions');
 
-module.exports = async (source, sources, pageSize = 10) => {
-  invariant(source, 'The source is not defined');
-  checkSource(source, sources);
-
-  const spinner = ora(`Trying to fetch the ${source}'s latest news...`).start();
-
-  const targetSource = sources.find(s => s.title === source);
-
-  invariant(targetSource, 'The source is not found');
-
-  const isCuratedCo = /issues\.rss/.test(targetSource.feedUrl); // check the feed is made by https://curated.co
-
-  const articles = await feed(targetSource.feedUrl);
-
-  const maxCommonPrefixLength = 80;
-  const commonPrefixIndex = articles
-    .slice(0, pageSize)
-    .reduce((prefixIndex, article, idx) => {
-      if (idx !== 0) {
-        const currentStr = article.title;
-        const prevStr = articles[idx - 1].title;
-        for (let j = 0; j < prefixIndex; j += 1) {
-          if (prevStr[j] !== currentStr[j]) {
-            return j;
-          }
+const getCommonPrefixIndex = (articles, maxCommonPrefixLength = 80) => {
+  const commonPrefixIndex = articles.reduce((prefixIndex, article, idx) => {
+    if (idx !== 0) {
+      const currentStr = article.title;
+      const prevStr = articles[idx - 1].title;
+      for (let j = 0; j < prefixIndex; j += 1) {
+        if (prevStr[j] !== currentStr[j]) {
+          return j;
         }
       }
-      return prefixIndex;
-    }, maxCommonPrefixLength);
+    }
+    return prefixIndex;
+  }, maxCommonPrefixLength);
 
+  return commonPrefixIndex;
+};
+
+module.exports = async (sourceInfo, pageSize = 10) => {
+  const spinner = ora(
+    `Trying to fetch the ${sourceInfo.title}'s latest news...`
+  ).start();
+
+  const articles = (await feed(sourceInfo.feedUrl)).slice(0, pageSize);
+
+  const commonPrefixIndex = getCommonPrefixIndex(articles);
+
+  // {
+  //   title1: url1,
+  //   title2: url2,
+  // }
   let articleMap = {};
 
-  articles.slice(0, pageSize).forEach(article => {
+  articles.forEach(article => {
     const { title, link } = article;
     articleMap[title.slice(commonPrefixIndex)] = link;
   });
@@ -52,9 +50,12 @@ module.exports = async (source, sources, pageSize = 10) => {
     getTitleQuestion(Object.keys(articleMap), pageSize),
   ]);
 
+  // check the feed is made by https://curated.co
+  const isCuratedCo = /issues\.rss/.test(sourceInfo.feedUrl);
   if (isCuratedCo) {
     articleMap = {};
     const regex = new RegExp(titleAnswer.title);
+
     articles.forEach(article => {
       if (regex.test(article.title)) {
         const $ = cheerio.load(article.content);
@@ -66,13 +67,14 @@ module.exports = async (source, sources, pageSize = 10) => {
         });
       }
     });
+
     titleAnswer = await inquirer.prompt([
       getTitleQuestion(Object.keys(articleMap), pageSize),
     ]);
   }
 
-  titleAnswer.title.forEach(t => {
-    open(articleMap[t]);
+  titleAnswer.title.forEach(title => {
+    open(articleMap[title]);
   });
 
   return true;

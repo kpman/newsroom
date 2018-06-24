@@ -1,10 +1,11 @@
-const setup = ({ title }) => {
-  const sources = [
-    {
-      title,
-    },
-  ];
-  return { sources };
+const setup = () => {
+  const sourceInfo = {
+    title: 'hackernews',
+    url: undefined,
+    feedUrl: 'https://news.ycombinator.com/rss',
+    feedType: 'rss',
+  };
+  return { sourceInfo };
 };
 
 let thenify;
@@ -56,32 +57,23 @@ it('should be defined', () => {
 });
 
 describe('#readNews', () => {
-  it('should throw when not pass source', async () => {
-    expect.assertions(1);
-    try {
-      await readNews();
-    } catch (e) {
-      expect(e.message).toBe('The source is not defined');
-    }
-  });
-
   it('should call ora to add spinner', async () => {
-    const { sources } = setup({ title: 'hackernews' });
-    await readNews('hackernews', sources);
+    const { sourceInfo } = setup();
+    await readNews(sourceInfo);
     expect(ora).toBeCalledWith(
-      `Trying to fetch the hackernews's latest news...`
+      `Trying to fetch the ${sourceInfo.title}'s latest news...`
     );
   });
 
   it('should call spinner succeed', async () => {
-    const { sources } = setup({ title: 'hackernews' });
-    await readNews('hackernews', sources);
+    const { sourceInfo } = setup();
+    await readNews(sourceInfo);
     expect(succeed).toBeCalled();
   });
 
   it('should call inquirer.prompt', async () => {
-    const { sources } = setup({ title: 'hackernews' });
-    await readNews('hackernews', sources);
+    const { sourceInfo } = setup();
+    await readNews(sourceInfo);
     expect(inquirer.prompt.mock.calls[0][0][0].choices).toEqual([
       'NBA-GO',
       'newsroom',
@@ -91,8 +83,8 @@ describe('#readNews', () => {
   });
 
   it('should call open', async () => {
-    const { sources } = setup({ title: 'hackernews' });
-    await readNews('hackernews', sources);
+    const { sourceInfo } = setup();
+    await readNews(sourceInfo);
     expect(open).toBeCalledWith(
       'https://news.ycombinator.com/item?id=15642276'
     );

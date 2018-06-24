@@ -32,6 +32,7 @@ module.exports = {
       },
     ],
     'no-underscore-dangle': 'off',
+    'no-loop-func': 'off',
   },
   plugins: ['prettier'],
 };

@@ -47,23 +47,24 @@ describe('#main', () => {
   });
 
   describe('version', () => {
-    it('exit after call --version', async () => {
+    it('exit after call `--version`', async () => {
       process.argv = ['node', 'bin/cli.js', '--version'];
       await main(minimist(process.argv.slice(2)));
       expect(console.log).toBeCalledWith(pkg.version);
       expect(process.exit).toBeCalledWith(0);
     });
 
-    it('exit after call -v', async () => {
+    it('exit after call `-v`', async () => {
       process.argv = ['node', 'bin/cli.js', '-v'];
       await main(minimist(process.argv.slice(2)));
       expect(console.log).toBeCalledWith(pkg.version);
       expect(process.exit).toBeCalledWith(0);
     });
 
-    it('exit after call version', async () => {
+    it('exit after call `version`', async () => {
       process.argv = ['node', 'bin/cli.js', 'version'];
-      await main(minimist(process.argv.slice(2)));
+      const argv = minimist(process.argv.slice(2));
+      await main(argv);
       expect(console.log).toBeCalledWith(pkg.version);
       expect(process.exit).toBeCalledWith(0);
     });
@@ -102,14 +103,13 @@ describe('#main', () => {
 
   describe('#readNews', () => {
     it('should parse source', async () => {
+      let pageSize;
       readNews.mockImplementation(() => Promise.resolve());
       process.argv = ['node', 'bin/cli.js', 'hackernews'];
+
       await main(minimist(process.argv.slice(2)));
-      expect(readNews).toBeCalledWith(
-        'hackernews',
-        [{ title: 'hackernews' }],
-        undefined
-      );
+
+      expect(readNews).toBeCalledWith({ title: 'hackernews' }, pageSize);
     });
   });
 });

@@ -2,6 +2,9 @@ const minimist = require('minimist');
 
 const main = require('./main');
 const { error } = require('./utils/log');
+const handleEscKeypress = require('./utils/handleEscKeypress');
+
+handleEscKeypress();
 
 main(minimist(process.argv.slice(2)))
   .then(() => {
@@ -11,11 +14,3 @@ main(minimist(process.argv.slice(2)))
     error(e);
     process.exit(1);
   });
-
-process.stdin.setEncoding('utf8');
-process.stdin.on('data', chunk => {
-  if (chunk === '\u001b') {
-    // ESC
-    process.exit(0);
-  }
-});

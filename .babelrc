@@ -1,17 +1,7 @@
 {
-  "presets": [
-    [
-      "env",
-      {
-        "targets": {
-          "node": "4"
-        }
-      }
-    ]
-  ],
+  "presets": ["@babel/env", "@babel/typescript"],
   "plugins": [
-    "transform-class-properties",
-    "transform-object-rest-spread",
-    "transform-runtime"
+    "@babel/proposal-class-properties",
+    "@babel/proposal-object-rest-spread"
   ]
 }

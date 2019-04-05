@@ -1,4 +1,4 @@
-const minimist = require('minimist');
+import minimist from 'minimist';
 
 const main = require('./main');
 const { error } = require('./utils/log');
@@ -10,7 +10,7 @@ main(minimist(process.argv.slice(2)))
   .then(() => {
     process.exit(0);
   })
-  .catch(e => {
-    error(e);
+  .catch((err: ErrorEvent) => {
+    error(err);
     process.exit(1);
   });

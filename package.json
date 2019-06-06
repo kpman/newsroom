@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/kpman/newsroom/issues"
   },
-  "version": "0.1.10",
+  "version": "0.1.11",
   "main": "bin/cli.js",
   "bin": {
     "newsroom": "bin/cli.js",

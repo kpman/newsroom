@@ -46,7 +46,7 @@
     "invariant": "^2.2.4",
     "minimist": "^1.2.0",
     "node-opml-parser": "^1.0.0",
-    "open": "^0.0.5",
+    "open": "^6.0.0",
     "ora": "^3.0.0",
     "sane": "^2.5.1",
     "thenify": "^3.3.0",

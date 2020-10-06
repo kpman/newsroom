@@ -71,7 +71,7 @@ $ newsroom --help
 ## Maintainers
 
 - [Daniel Tseng](https://github.com/kpman)
-- Waiting for you 🤘
+- Waiting for you! 🤘
 
 ## License
 

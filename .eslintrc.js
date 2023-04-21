@@ -1,6 +1,11 @@
 module.exports = {
-  parser: 'babel-eslint',
-  extends: ['eslint:recommended', 'airbnb-base', 'prettier'],
+  parser: '@typescript-eslint/parser',
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'airbnb-base',
+    'plugin:prettier/recommended',
+  ],
   env: {
     node: true,
     jest: true,
@@ -34,5 +39,12 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'no-loop-func': 'off',
   },
-  plugins: ['prettier'],
+  plugins: ['@typescript-eslint', 'prettier'],
+  settings: {
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+      },
+    },
+  },
 };

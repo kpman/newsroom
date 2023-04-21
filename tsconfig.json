@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "CommonJS",
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "outDir": "lib",
+    "noEmitOnError": false,
+    "strict": false,
+    "resolveJsonModule": true
+  },
+  "include": ["src"]
+}

@@ -10,7 +10,7 @@ main(minimist(process.argv.slice(2)))
   .then(() => {
     process.exit(0);
   })
-  .catch(e => {
+  .catch((e) => {
     error(e);
     process.exit(1);
   });

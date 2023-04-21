@@ -4,7 +4,7 @@ const parseOpml = require('./opml');
 
 module.exports = async () => {
   const sources = await parseOpml();
-  const sourcesTitle = sources.map(s => s.title);
+  const sourcesTitle = sources.map((s) => s.title);
 
   console.log(`
     ${chalk.cyan('$ newsroom')}

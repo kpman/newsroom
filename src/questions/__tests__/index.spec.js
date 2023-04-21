@@ -1,4 +1,4 @@
-const questions = require('../');
+const questions = require('..');
 
 it('should be defined', () => {
   expect(questions).toBeDefined();

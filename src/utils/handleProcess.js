@@ -1,11 +1,11 @@
 const { error } = require('./log');
 
-const handleUnexpected = err => {
+const handleUnexpected = (err) => {
   error(`An unexpected error occurred!\n  ${err.stack}`);
   process.exit(1);
 };
 
-const handleRejection = err => {
+const handleRejection = (err) => {
   if (err) {
     if (err instanceof Error) {
       handleUnexpected(err);

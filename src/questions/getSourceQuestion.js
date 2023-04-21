@@ -1,6 +1,6 @@
 const searchSources = require('./searchSources');
 
-module.exports = sources => ({
+module.exports = (sources) => ({
   type: 'autocomplete',
   name: 'source',
   message: 'Please choose a source:',

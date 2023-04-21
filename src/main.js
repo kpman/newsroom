@@ -10,7 +10,7 @@ const help = require('./help');
 const getSourcesInfo = require('./opml');
 const readNews = require('./readNews');
 
-const main = async argv => {
+const main = async (argv) => {
   checkForUpdates();
 
   if (argv.v || argv.version || argv._[0] === 'version') {
@@ -39,7 +39,7 @@ const main = async argv => {
         require('inquirer-autocomplete-prompt')
       );
 
-      const sourcesTitle = sourcesInfo.map(sourceInfo => sourceInfo.title);
+      const sourcesTitle = sourcesInfo.map((sourceInfo) => sourceInfo.title);
       const answer = await inquirer.prompt([getSourceQuestion(sourcesTitle)]);
       source = answer.source;
     }
@@ -47,7 +47,7 @@ const main = async argv => {
     checkSource(source, sourcesInfo);
 
     const targetSourceInfo = sourcesInfo.find(
-      sourceInfo => sourceInfo.title === source
+      (sourceInfo) => sourceInfo.title === source
     );
 
     loop = await readNews(targetSourceInfo, pageSize);

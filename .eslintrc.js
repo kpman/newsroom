@@ -38,6 +38,9 @@ module.exports = {
     ],
     'no-underscore-dangle': 'off',
     'no-loop-func': 'off',
+
+    // remove this rule after migrate to import statement for all files
+    '@typescript-eslint/no-var-requires': 'off',
   },
   plugins: ['@typescript-eslint', 'prettier'],
   settings: {

@@ -39,7 +39,7 @@ module.exports = async (sourceInfo, pageSize = 10) => {
   // }
   let articleMap = {};
 
-  articles.forEach(article => {
+  articles.forEach((article) => {
     const { title, link } = article;
     articleMap[title.slice(commonPrefixIndex)] = link;
   });
@@ -56,11 +56,11 @@ module.exports = async (sourceInfo, pageSize = 10) => {
     articleMap = {};
     const regex = new RegExp(titleAnswer.title);
 
-    articles.forEach(article => {
+    articles.forEach((article) => {
       if (regex.test(article.title)) {
         const $ = cheerio.load(article.content);
         // eslint-disable-next-line func-names
-        $('h4 a').each(function() {
+        $('h4 a').each(function () {
           const title = $(this).text();
           const url = $(this).attr('href');
           articleMap[title] = url;
@@ -73,7 +73,7 @@ module.exports = async (sourceInfo, pageSize = 10) => {
     ]);
   }
 
-  titleAnswer.title.forEach(title => {
+  titleAnswer.title.forEach((title) => {
     open(articleMap[title]);
   });
 

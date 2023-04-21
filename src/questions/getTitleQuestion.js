@@ -3,6 +3,6 @@ module.exports = (titles, pageSize = 5) => ({
   name: 'title',
   message: 'Please choose which title you want to open',
   choices: titles,
-  filter: val => val,
+  filter: (val) => val,
   pageSize,
 });

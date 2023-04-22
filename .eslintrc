@@ -1,0 +1,47 @@
+{
+  "env": {
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "import", "prettier"],
+  "rules": {
+    "arrow-parens": "off",
+    "consistent-return": "off",
+    "global-require": "off",
+    "prefer-destructuring": "off",
+
+    "no-underscore-dangle": "off",
+    "no-loop-func": "off",
+
+    "prettier/prettier": "warn",
+
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "newlines-between": "always"
+      }
+    ],
+
+    // remove this rule after migrate to import statement for all files
+    "@typescript-eslint/no-var-requires": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
+}

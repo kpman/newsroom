@@ -1,28 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`#opml should parse correctly 1`] = `Array []`;
+exports[`#opml should parse correctly 1`] = `[]`;
 
 exports[`#opml should parse correctly with array 1`] = `
-Array [
-  Object {
+[
+  {
     "feedType": undefined,
     "feedUrl": "http://www.theverge.com/rss/index.xml",
     "title": undefined,
     "url": undefined,
   },
-  Object {
+  {
     "feedType": undefined,
     "feedUrl": "https://techcrunch.com/feed/",
     "title": undefined,
     "url": undefined,
   },
-  Object {
+  {
     "feedType": undefined,
     "feedUrl": "http://feeds.mashable.com/Mashable",
     "title": undefined,
     "url": undefined,
   },
-  Object {
+  {
     "feedType": undefined,
     "feedUrl": "http://www.engadget.com/rss.xml",
     "title": undefined,

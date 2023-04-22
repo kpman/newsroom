@@ -1,12 +1,12 @@
-const help = require('../help');
+import help from '../help';
 
 jest.mock('../opml');
 
 let parseOpml;
 const consoleLog = console.log;
 
-beforeEach(() => {
-  parseOpml = require('../opml');
+beforeEach(async () => {
+  parseOpml = (await import('../opml')).default;
   console.log = jest.fn();
 });
 

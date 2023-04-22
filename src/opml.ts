@@ -1,11 +1,12 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
-const thenify = require('thenify');
+import thenify from 'thenify';
 const parseOpml = thenify(require('node-opml-parser'));
 
-module.exports = async opmlPath => {
+export default async (opmlPath?: any) => {
   let filePath;
+
   if (opmlPath) {
     if (fs.existsSync(opmlPath)) {
       filePath = opmlPath;
@@ -19,5 +20,6 @@ module.exports = async opmlPath => {
 
   const opmlFile = fs.readFileSync(filePath);
   const result = await parseOpml(opmlFile.toString());
+
   return result;
 };

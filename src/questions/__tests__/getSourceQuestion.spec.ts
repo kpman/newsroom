@@ -1,4 +1,4 @@
-const getSourceQuestion = require('../getSourceQuestion');
+import getSourceQuestion from '../getSourceQuestion';
 
 it('be defined', () => {
   expect(getSourceQuestion).toBeDefined();

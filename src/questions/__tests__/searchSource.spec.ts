@@ -1,4 +1,4 @@
-const searchSource = require('../searchSources');
+import searchSource from '../searchSources';
 
 it('should be defined', () => {
   expect(searchSource).toBeDefined();

@@ -1,4 +1,4 @@
-const { handleUnexpected, handleRejection } = require('../handleProcess');
+import { handleUnexpected, handleRejection } from '../handleProcess';
 
 jest.mock('../log');
 const processExit = process.exit;
@@ -6,7 +6,8 @@ let error;
 
 beforeEach(() => {
   error = require('../log').error;
-  process.exit = jest.fn();
+
+  process.exit = jest.fn() as any;
 });
 
 afterEach(() => {

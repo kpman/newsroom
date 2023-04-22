@@ -1,6 +1,6 @@
-const searchSources = require('./searchSources');
+import searchSources from './searchSources';
 
-module.exports = sources => ({
+export default (sources) => ({
   type: 'autocomplete',
   name: 'source',
   message: 'Please choose a source:',

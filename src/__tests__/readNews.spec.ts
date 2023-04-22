@@ -10,7 +10,7 @@ const setup = () => {
 
 let thenify;
 let inquirer;
-let open;
+let openFn;
 let ora;
 let readNews;
 let succeed;
@@ -21,14 +21,15 @@ jest.mock('open');
 jest.mock('ora');
 jest.mock('../utils/log');
 
-beforeEach(() => {
-  inquirer = require('inquirer');
+beforeEach(async () => {
+  inquirer = await import('inquirer');
   inquirer.prompt.mockReturnValue(
     Promise.resolve({
       title: ['NBA-GO'],
     })
   );
-  thenify = require('thenify');
+
+  thenify = await import('thenify');
   thenify.mockReturnValue(() =>
     Promise.resolve([
       {
@@ -41,15 +42,17 @@ beforeEach(() => {
       },
     ])
   );
-  succeed = jest.fn();
-  ora = require('ora');
+
+  ora = await import('ora');
   ora.mockReturnValue({
     start: jest.fn(() => ({
       succeed,
     })),
   });
-  open = require('open');
-  readNews = require('../readNews');
+
+  openFn = (await import('open')).default;
+  readNews = (await import('../readNews')).default;
+  succeed = jest.fn();
 });
 
 it('should be defined', () => {
@@ -85,7 +88,7 @@ describe('#readNews', () => {
   it('should call open', async () => {
     const { sourceInfo } = setup();
     await readNews(sourceInfo);
-    expect(open).toBeCalledWith(
+    expect(openFn).toBeCalledWith(
       'https://news.ycombinator.com/item?id=15642276'
     );
   });

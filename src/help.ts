@@ -1,10 +1,10 @@
-const chalk = require('chalk');
+import chalk from 'chalk';
 
-const parseOpml = require('./opml');
+import parseOpml from './opml';
 
-module.exports = async () => {
+export default async () => {
   const sources = await parseOpml();
-  const sourcesTitle = sources.map(s => s.title);
+  const sourcesTitle = sources.map((s) => s.title);
 
   console.log(`
     ${chalk.cyan('$ newsroom')}

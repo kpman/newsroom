@@ -22,9 +22,9 @@
     "lib"
   ],
   "scripts": {
-    "build": "npm run clean && babel src -d lib --copy-files --ignore '**/*.spec.js'",
-    "clean": "rimraf lib packed",
-    "lint": "eslint src",
+    "build": "npm run clean && tsc && cp src/sources.opml lib/sources.opml",
+    "clean": "rimraf dist packed",
+    "lint": "eslint 'src/**/*.{js,ts}'",
     "lint:fix": "npm run lint -- --fix",
     "pkg": "npm run build && pkg . --out-path packed",
     "prepublishOnly": "npm run lint && npm run build",
@@ -35,7 +35,6 @@
     "version": "rimraf package-lock.json && git add -A"
   },
   "dependencies": {
-    "babel-runtime": "^6.26.0",
     "chalk": "^2.4.1",
     "cheerio": "^1.0.0-rc.2",
     "feed-read-parser": "^0.0.6",
@@ -53,25 +52,26 @@
     "update-notifier": "^2.5.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "^23.6.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.7.0",
-    "eslint": "^5.8.0",
-    "eslint-config-airbnb-base": "^13.1.0",
+    "@types/jest": "^29.5.1",
+    "@types/node": "^18.15.13",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
+    "eslint": "^8.38.0",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^3.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
     "husky": "^1.1.2",
-    "jest": "^23.6.0",
+    "jest": "^29.5.0",
     "lint-staged": "^8.0.4",
-    "pkg": "^4.3.4",
-    "prettier": "^1.14.3",
+    "pkg": "^5.8.1",
+    "prettier": "^2.8.7",
     "prettier-package-json": "^2.0.1",
-    "rimraf": "^2.6.2"
+    "rimraf": "^5.0.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
   },
   "keywords": [
     "newsletter"
@@ -83,13 +83,6 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "collectCoverageFrom": [
-      "src/**/*.js"
-    ],
-    "coverageDirectory": "./coverage/"
   },
   "lint-staged": {
     "*.js": [
@@ -105,9 +98,9 @@
     "scripts": "lib/**/*.js",
     "assets": "lib/sources.opml",
     "targets": [
-      "node6-macos",
-      "node6-linux",
-      "node6-win"
+      "node14-macos",
+      "node14-linux",
+      "node14-win"
     ]
   }
 }

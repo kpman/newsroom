@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "lib": ["ES2022"],
+    "module": "CommonJS",
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "outDir": "lib",
+    "noEmitOnError": false,
+    "strict": false,
+    "resolveJsonModule": true,
+    "rootDir": "src"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

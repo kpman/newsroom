@@ -4,10 +4,10 @@ jest.mock('../opml');
 jest.mock('../readNews');
 jest.mock('../help');
 
-const minimist = require('minimist');
+import minimist from 'minimist';
 
-const main = require('../main');
-const pkg = require('../../package.json');
+import main from '../main';
+import pkg from '../package';
 
 let inquirer;
 let checkForUpdates;
@@ -18,17 +18,20 @@ let help;
 const _processExit = process.exit;
 const _consoleLog = console.log;
 
-beforeEach(() => {
-  inquirer = require('inquirer');
+beforeEach(async () => {
+  checkForUpdates = (await import('../utils/checkForUpdates')).default;
+  readNews = (await import('../readNews')).default;
+  help = (await import('../help')).default;
+
+  inquirer = await import('inquirer');
+  parseOpml = (await import('../opml')).default;
+
   inquirer.prompt.mockReturnValue(Promise.resolve({ source: 'hackernews' }));
-  checkForUpdates = require('../utils/checkForUpdates');
-  parseOpml = require('../opml');
   parseOpml.mockImplementation(() =>
     Promise.resolve([{ title: 'hackernews' }])
   );
-  readNews = require('../readNews');
-  help = require('../help');
-  process.exit = jest.fn();
+
+  process.exit = jest.fn() as any;
   console.log = jest.fn();
 });
 

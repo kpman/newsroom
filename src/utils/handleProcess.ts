@@ -1,11 +1,11 @@
-const { error } = require('./log');
+import { error } from './log';
 
-const handleUnexpected = err => {
+const handleUnexpected = (err) => {
   error(`An unexpected error occurred!\n  ${err.stack}`);
   process.exit(1);
 };
 
-const handleRejection = err => {
+const handleRejection = (err?: any) => {
   if (err) {
     if (err instanceof Error) {
       handleUnexpected(err);
@@ -15,10 +15,8 @@ const handleRejection = err => {
   } else {
     error('An unexpected empty rejection occurred');
   }
+
   return process.exit(1);
 };
 
-module.exports = {
-  handleUnexpected,
-  handleRejection,
-};
+export { handleUnexpected, handleRejection };

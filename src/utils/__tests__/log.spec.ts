@@ -1,7 +1,7 @@
-const chalk = require('chalk');
-const figures = require('figures');
+import chalk from 'chalk';
+import figures from 'figures';
 
-const { log, print, warn, error } = require('../log');
+import { log, print, warn, error } from '../log';
 
 const consoleLog = console.log;
 

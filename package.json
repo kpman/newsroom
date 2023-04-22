@@ -98,9 +98,9 @@
     "scripts": "lib/**/*.js",
     "assets": "lib/sources.opml",
     "targets": [
-      "node6-macos",
-      "node6-linux",
-      "node6-win"
+      "node14-macos",
+      "node14-linux",
+      "node14-win"
     ]
   }
 }

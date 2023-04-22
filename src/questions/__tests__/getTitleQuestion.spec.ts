@@ -1,4 +1,4 @@
-const getTitleQuestion = require('../getTitleQuestion');
+import getTitleQuestion from '../getTitleQuestion';
 
 it('should be defined', () => {
   expect(getTitleQuestion).toBeDefined();

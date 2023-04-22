@@ -1,4 +1,4 @@
-const checkSource = require('../checkSource');
+import checkSource from '../checkSource';
 
 it('should be defined', () => {
   expect(checkSource).toBeDefined();

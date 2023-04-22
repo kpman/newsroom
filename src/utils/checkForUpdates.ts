@@ -1,9 +1,9 @@
-const updateNotifier = require('update-notifier');
-const chalk = require('chalk');
+import updateNotifier from 'update-notifier';
+import chalk from 'chalk';
 
-const pkg = require('../../package.json');
+import pkg from '../package';
 
-module.exports = () => {
+export default () => {
   const notifier = updateNotifier({ pkg });
   const { update } = notifier;
 

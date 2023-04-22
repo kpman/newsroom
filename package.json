@@ -22,7 +22,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "npm run clean && tsc",
+    "build": "npm run clean && tsc && cp src/sources.opml lib/sources.opml",
     "clean": "rimraf dist packed",
     "lint": "eslint 'src/**/*.{js,ts}'",
     "lint:fix": "npm run lint -- --fix",
@@ -53,6 +53,7 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.1",
+    "@types/node": "^18.15.13",
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",
     "eslint": "^8.38.0",

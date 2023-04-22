@@ -1,14 +1,12 @@
-/* eslint-disable no-await-in-loop */
-const inquirer = require('inquirer');
+import inquirer from 'inquirer';
 
-const pkg = require('../package.json');
-
-const checkForUpdates = require('./utils/checkForUpdates');
-const checkSource = require('./utils/checkSource');
-const { getSourceQuestion } = require('./questions');
-const help = require('./help');
-const getSourcesInfo = require('./opml');
-const readNews = require('./readNews');
+import pkg from './package';
+import checkForUpdates from './utils/checkForUpdates';
+import checkSource from './utils/checkSource';
+import { getSourceQuestion } from './questions';
+import help from './help';
+import getSourcesInfo from './opml';
+import readNews from './readNews';
 
 const main = async (argv) => {
   checkForUpdates();
@@ -54,4 +52,4 @@ const main = async (argv) => {
   }
 };
 
-module.exports = main;
+export default main;

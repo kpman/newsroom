@@ -1,6 +1,6 @@
-const chalk = require('chalk');
+import chalk from 'chalk';
 
-const checkForUpdates = require('../checkForUpdates');
+import checkForUpdates from '../checkForUpdates';
 
 let updateNotifier;
 

@@ -1,6 +1,6 @@
-const path = require('path');
+import path from 'path';
 
-const opml = require('../opml');
+import opml from '../opml';
 
 jest.mock('fs');
 

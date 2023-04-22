@@ -1,4 +1,4 @@
-const help = require('../help');
+import help from '../help';
 
 jest.mock('../opml');
 

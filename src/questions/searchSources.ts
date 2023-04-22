@@ -1,6 +1,6 @@
-const fuzzy = require('fuzzy');
+import fuzzy from 'fuzzy';
 
-const searchSources = (sources) => (answers, _input) => {
+const searchSources = (sources) => (answers?: any, _input?: any) => {
   const input = _input || '';
   return new Promise((resolve) => {
     const fuzzyResult = fuzzy.filter(input, sources);
@@ -8,4 +8,4 @@ const searchSources = (sources) => (answers, _input) => {
   });
 };
 
-module.exports = searchSources;
+export default searchSources;

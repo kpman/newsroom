@@ -4,10 +4,10 @@ jest.mock('../opml');
 jest.mock('../readNews');
 jest.mock('../help');
 
-const minimist = require('minimist');
+import minimist from 'minimist';
 
-const main = require('../main');
-const pkg = require('../../package.json');
+import main from '../main';
+import pkg from '../package';
 
 let inquirer;
 let checkForUpdates;
@@ -28,7 +28,7 @@ beforeEach(() => {
   );
   readNews = require('../readNews');
   help = require('../help');
-  process.exit = jest.fn();
+  process.exit = jest.fn() as any;
   console.log = jest.fn();
 });
 

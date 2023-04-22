@@ -10,7 +10,7 @@ const setup = () => {
 
 let thenify;
 let inquirer;
-let open;
+let openFn;
 let ora;
 let readNews;
 let succeed;
@@ -48,7 +48,7 @@ beforeEach(() => {
       succeed,
     })),
   });
-  open = require('open');
+  openFn = require('open');
   readNews = require('../readNews');
 });
 
@@ -85,7 +85,7 @@ describe('#readNews', () => {
   it('should call open', async () => {
     const { sourceInfo } = setup();
     await readNews(sourceInfo);
-    expect(open).toBeCalledWith(
+    expect(openFn).toBeCalledWith(
       'https://news.ycombinator.com/item?id=15642276'
     );
   });

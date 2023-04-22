@@ -18,16 +18,19 @@ let help;
 const _processExit = process.exit;
 const _consoleLog = console.log;
 
-beforeEach(() => {
-  inquirer = require('inquirer');
+beforeEach(async () => {
+  checkForUpdates = (await import('../utils/checkForUpdates')).default;
+  readNews = (await import('../readNews')).default;
+  help = (await import('../help')).default;
+
+  inquirer = await import('inquirer');
+  parseOpml = (await import('../opml')).default;
+
   inquirer.prompt.mockReturnValue(Promise.resolve({ source: 'hackernews' }));
-  checkForUpdates = require('../utils/checkForUpdates');
-  parseOpml = require('../opml');
   parseOpml.mockImplementation(() =>
     Promise.resolve([{ title: 'hackernews' }])
   );
-  readNews = require('../readNews');
-  help = require('../help');
+
   process.exit = jest.fn() as any;
   console.log = jest.fn();
 });

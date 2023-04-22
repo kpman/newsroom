@@ -21,14 +21,15 @@ jest.mock('open');
 jest.mock('ora');
 jest.mock('../utils/log');
 
-beforeEach(() => {
-  inquirer = require('inquirer');
+beforeEach(async () => {
+  inquirer = await import('inquirer');
   inquirer.prompt.mockReturnValue(
     Promise.resolve({
       title: ['NBA-GO'],
     })
   );
-  thenify = require('thenify');
+
+  thenify = await import('thenify');
   thenify.mockReturnValue(() =>
     Promise.resolve([
       {
@@ -41,15 +42,17 @@ beforeEach(() => {
       },
     ])
   );
-  succeed = jest.fn();
-  ora = require('ora');
+
+  ora = await import('ora');
   ora.mockReturnValue({
     start: jest.fn(() => ({
       succeed,
     })),
   });
-  openFn = require('open');
-  readNews = require('../readNews');
+
+  openFn = (await import('open')).default;
+  readNews = (await import('../readNews')).default;
+  succeed = jest.fn();
 });
 
 it('should be defined', () => {
